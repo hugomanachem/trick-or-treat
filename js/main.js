@@ -1,10 +1,10 @@
 class Player {
     constructor() {
         // initialize properties
-        this.width = 10;
-        this.height = 16;
-        this.positionX = 0;
-        this.positionY = 0;
+        this.width = 3;
+        this.height = 10;
+        this.positionX = 12.5;
+        this.positionY = 12.5;
 
         // dom manipulation to reflect initial values (size, position)
         this.playerElm = document.getElementById("player");
@@ -15,19 +15,35 @@ class Player {
     }
     moveLeft() {
         this.positionX--;
+        if(this.positionX < 12.5) {
+            console.log("Collision detected on the left");
+            this.positionX++;
+        }
         this.playerElm.style.left = this.positionX + "vw";
     }
     moveRight() {
         this.positionX++;
+        if(this.positionX + this.width > 87.5) {
+            console.log("Collision detected on the right");
+            this.positionX--;
+        }
         this.playerElm.style.left = this.positionX + "vw";
     }
 
     moveUp() {
         this.positionY++;
+        if(this.positionY + this.height > 87.5) {
+            console.log("Collision detected on the top");
+            this.positionY--;
+        }
         this.playerElm.style.bottom = this.positionY + "vh";
     }
     moveDown() {
         this.positionY--;
+        if(this.positionY < 12.5) {
+            console.log("Collision detected on the bottom");
+            this.positionY++;
+        }
         this.playerElm.style.bottom = this.positionY + "vh";
     }
 }
@@ -45,7 +61,6 @@ document.addEventListener("keydown", (e) => {
             player.moveUp();
             break;
         case "ArrowDown":
-            console.log("arrow down detected");
             player.moveDown();
             break;
     }
