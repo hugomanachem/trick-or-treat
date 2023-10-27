@@ -1,0 +1,16 @@
+body {
+    background-color: #ddd;
+}
+
+
+#board {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+#player {
+    background-color: limegreen;
+    position: absolute;
+}
