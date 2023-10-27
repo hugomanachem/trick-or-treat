@@ -19,3 +19,8 @@ body {
     background-color: limegreen;
     position: absolute;
 }
+
+#item {
+    background-color: gold;
+    position: absolute;
+}
