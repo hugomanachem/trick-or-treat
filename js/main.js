@@ -54,8 +54,8 @@ class Game {
         this.player.positionY = Math.random() * (90 - this.player.height - 10) + 10;
 
         do {
-            this.item.positionX = Math.random() * ((90 - this.item.width) - 10) + 10;
-            this.item.positionY = Math.random() * (90 - this.item.height - 10) + 10;
+            this.item.positionX = Math.random() * ((90 - this.player.width) - 10) + 10;
+            this.item.positionY = Math.random() * (90 - this.player.height - 10) + 10;
         } while (this.isItemCollision());
 
         this.player.updatePlayer();
