@@ -6,15 +6,17 @@ class Game {
         this.boardWidth = (Array(this.boardElm.attributes))[0][0].ownerElement.clientWidth;
         this.boardHeight = (Array(this.boardElm.attributes))[0][0].ownerElement.clientHeight;
 
-        this.timerElm = document.getElementById('timer');
-        console.log(this.timerElm)
-
         const player = new Player();
         this.player = player;
         const item = new Item();
         this.item = item;
         this.isMalus = false;
+        
+        this.scoreElm = document.getElementById('score');
+        this.score = 0;
+        this.scoreElm.innerText = this.score;
 
+        this.timerElm = document.getElementById('timer');
         this.time = 0;
         this.setTimer();
     }
@@ -59,7 +61,9 @@ class Game {
         setTimeout(() => {
             this.player.updatePlayer();
             alert("You've collected an Item!");
-        }, 200);
+        },10);
+        this.score++;
+        this.scoreElm.innerText = this.score;
     }
 
     generateNewLevel() {
@@ -78,7 +82,7 @@ class Game {
     }
 
     setTimer() {
-        this.time = 10;
+        this.time = 100;
         let timerId = setInterval(() => {
             if (this.time >= 0) {
                 this.timerElm.innerText = this.time;

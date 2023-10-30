@@ -58,3 +58,10 @@ h2 {
     font-weight: 500;
     line-height: 2rem;
 }
+
+#score {
+    color: white;
+    font-size: large;
+    font-weight: 500;
+    line-height: 2rem;
+}
