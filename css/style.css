@@ -65,3 +65,35 @@ h2 {
     font-weight: 500;
     line-height: 2rem;
 }
+
+#end-score-div {
+    width: 1200px;
+    height: 600px;
+    overflow: hidden;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    color: white;
+    padding: 10px;
+    border: 1px solid white;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border: 1px solid black;
+    text-decoration: none;
+}
+
+p {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+}

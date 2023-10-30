@@ -11,7 +11,7 @@ class Game {
         const item = new Item();
         this.item = item;
         this.isMalus = false;
-        
+
         this.scoreElm = document.getElementById('score');
         this.score = 0;
         this.scoreElm.innerText = this.score;
@@ -61,7 +61,7 @@ class Game {
         setTimeout(() => {
             this.player.updatePlayer();
             alert("You've collected an Item!");
-        },10);
+        }, 10);
         this.score++;
         this.scoreElm.innerText = this.score;
     }
@@ -82,13 +82,13 @@ class Game {
     }
 
     setTimer() {
-        this.time = 100;
+        this.time = 10;
         let timerId = setInterval(() => {
             if (this.time >= 0) {
                 this.timerElm.innerText = this.time;
-                console.log(this.timerElm.innerHTML)
                 this.time--;
             } else {
+                location.href = "scorePage.html";
             }
         }, 1000);
     }
