@@ -1,27 +1,39 @@
 class Game {
     constructor() {
+        this.boardElm = document.getElementById('board');
+        this.boardOriginX = (Array(this.boardElm.attributes))[0][0].ownerElement.offsetLeft;
+        this.boardOriginY = (Array(this.boardElm.attributes))[0][0].ownerElement.offsetTop;
+        this.boardWidth = (Array(this.boardElm.attributes))[0][0].ownerElement.clientWidth;
+        this.boardHeight = (Array(this.boardElm.attributes))[0][0].ownerElement.clientHeight;
+
+        this.timerElm = document.getElementById('timer');
+        console.log(this.timerElm)
+
         const player = new Player();
         this.player = player;
         const item = new Item();
         this.item = item;
         this.isMalus = false;
+
+        this.time = 0;
+        this.setTimer();
     }
 
     checkWallCollision() {
-        if (this.player.positionX < 10) {
-            this.player.positionX = 10;
+        if (this.player.positionX < this.boardOriginX) {
+            this.player.positionX = this.boardOriginX;
             this.player.updatePlayer();
             console.log("Collision detected on the left");
-        } else if (this.player.positionX + this.player.width > 90) {
-            this.player.positionX = 90 - this.player.width;
+        } else if (this.player.positionX + this.player.width > this.boardOriginX + this.boardWidth) {
+            this.player.positionX = this.boardOriginX + this.boardWidth - this.player.width;
             this.player.updatePlayer();
             console.log("Collision detected on the right");
-        } else if (this.player.positionY + this.player.height > 90) {
-            this.player.positionY = 90 - this.player.height;
+        } else if (this.player.positionY + this.player.height > this.boardOriginY + this.boardHeight) {
+            this.player.positionY = this.boardOriginY + this.boardHeight - this.player.height;
             this.player.updatePlayer();
             console.log("Collision detected on the top");
-        } else if (this.player.positionY < 10) {
-            this.player.positionY = 10;
+        } else if (this.player.positionY < this.boardOriginY) {
+            this.player.positionY = this.boardOriginY;
             this.player.updatePlayer();
             console.log("Collision detected on the bottom");
         }
@@ -51,12 +63,12 @@ class Game {
     }
 
     generateNewLevel() {
-        this.player.positionX = Math.random() * ((90 - this.player.width) - 10) + 10;
-        this.player.positionY = Math.random() * (90 - this.player.height - 10) + 10;
+        this.player.positionX = Math.random() * ((this.boardOriginX + this.boardWidth - this.player.width) - this.boardOriginX) + this.boardOriginX;
+        this.player.positionY = Math.random() * (this.boardOriginY + this.boardHeight - this.player.height - this.boardHeight) + this.boardHeight;
 
         do {
-            this.item.positionX = Math.random() * ((90 - this.player.width) - 10) + 10;
-            this.item.positionY = Math.random() * (90 - this.player.height - 10) + 10;
+            this.player.positionX = Math.random() * ((this.boardOriginX + this.boardWidth - this.player.width) - this.boardOriginX) + this.boardOriginX;
+            this.player.positionY = Math.random() * (this.boardOriginY + this.boardHeight - this.player.height - this.boardHeight) + this.boardHeight;
         } while (this.isItemCollision());
 
         this.isMalus = !this.isMalus;
@@ -65,16 +77,26 @@ class Game {
 
     }
 
+    setTimer() {
+        this.time = 10;
+        let timerId = setInterval(() => {
+            if (this.time >= 0) {
+                this.timerElm.innerText = this.time;
+                console.log(this.timerElm.innerHTML)
+                this.time--;
+            } else {
+            }
+        }, 1000);
+    }
+
 }
 
 
 //game initialisation
 const game = new Game();
-let boardElm = document.getElementById("board");
-console.log(Array(boardElm.attributes)[0][0].ownerElement)
 
 document.addEventListener("keydown", (e) => {
-    if(game.isMalus) {
+    if (game.isMalus) {
         switch (e.code) {
             case "ArrowLeft":
                 game.player.moveRight();
@@ -84,7 +106,7 @@ document.addEventListener("keydown", (e) => {
                     setTimeout(() => {
                         game.generateNewLevel();
                     }, 200);
-    
+
                 }
                 game.player.updatePlayer();
                 break;
@@ -132,7 +154,7 @@ document.addEventListener("keydown", (e) => {
                     setTimeout(() => {
                         game.generateNewLevel();
                     }, 200);
-    
+
                 }
                 game.player.updatePlayer();
                 break;
@@ -171,5 +193,5 @@ document.addEventListener("keydown", (e) => {
                 break;
         }
     }
-    
+
 });
