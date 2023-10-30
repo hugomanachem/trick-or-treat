@@ -4,6 +4,7 @@ class Game {
         this.player = player;
         const item = new Item();
         this.item = item;
+        this.isMalus = false;
     }
 
     checkWallCollision() {
@@ -58,6 +59,7 @@ class Game {
             this.item.positionY = Math.random() * (90 - this.player.height - 10) + 10;
         } while (this.isItemCollision());
 
+        this.isMalus = !this.isMalus;
         this.player.updatePlayer();
         this.item.updateItem();
 
@@ -72,51 +74,102 @@ let boardElm = document.getElementById("board");
 console.log(Array(boardElm.attributes)[0][0].ownerElement)
 
 document.addEventListener("keydown", (e) => {
-    switch (e.code) {
-        case "ArrowLeft":
-            game.player.moveLeft();
-            game.checkWallCollision();
-            if (game.isItemCollision()) {
-                game.collectItem();
-                setTimeout(() => {
-                    game.generateNewLevel();
-                }, 200);
-
-            }
-            game.player.updatePlayer();
-            break;
-        case "ArrowRight":
-            game.player.moveRight();
-            game.checkWallCollision();
-            if (game.isItemCollision()) {
-                game.collectItem();
-                setTimeout(() => {
-                    game.generateNewLevel();
-                }, 200);
-            }
-            game.player.updatePlayer();
-            break;
-        case "ArrowUp":
-            game.player.moveUp();
-            game.checkWallCollision();
-            if (game.isItemCollision()) {
-                game.collectItem();
-                setTimeout(() => {
-                    game.generateNewLevel();
-                }, 200);
-            }
-            game.player.updatePlayer();
-            break;
-        case "ArrowDown":
-            game.player.moveDown();
-            game.checkWallCollision();
-            if (game.isItemCollision()) {
-                game.collectItem();
-                setTimeout(() => {
-                    game.generateNewLevel();
-                }, 200);
-            }
-            game.player.updatePlayer();
-            break;
+    if(game.isMalus) {
+        switch (e.code) {
+            case "ArrowLeft":
+                game.player.moveRight();
+                game.checkWallCollision();
+                if (game.isItemCollision()) {
+                    game.collectItem();
+                    setTimeout(() => {
+                        game.generateNewLevel();
+                    }, 200);
+    
+                }
+                game.player.updatePlayer();
+                break;
+            case "ArrowRight":
+                game.player.moveLeft();
+                game.checkWallCollision();
+                if (game.isItemCollision()) {
+                    game.collectItem();
+                    setTimeout(() => {
+                        game.generateNewLevel();
+                    }, 200);
+                }
+                game.player.updatePlayer();
+                break;
+            case "ArrowUp":
+                game.player.moveDown();
+                game.checkWallCollision();
+                if (game.isItemCollision()) {
+                    game.collectItem();
+                    setTimeout(() => {
+                        game.generateNewLevel();
+                    }, 200);
+                }
+                game.player.updatePlayer();
+                break;
+            case "ArrowDown":
+                game.player.moveUp();
+                game.checkWallCollision();
+                if (game.isItemCollision()) {
+                    game.collectItem();
+                    setTimeout(() => {
+                        game.generateNewLevel();
+                    }, 200);
+                }
+                game.player.updatePlayer();
+                break;
+        }
+    } else {
+        switch (e.code) {
+            case "ArrowLeft":
+                game.player.moveLeft();
+                game.checkWallCollision();
+                if (game.isItemCollision()) {
+                    game.collectItem();
+                    setTimeout(() => {
+                        game.generateNewLevel();
+                    }, 200);
+    
+                }
+                game.player.updatePlayer();
+                break;
+            case "ArrowRight":
+                game.player.moveRight();
+                game.checkWallCollision();
+                if (game.isItemCollision()) {
+                    game.collectItem();
+                    setTimeout(() => {
+                        game.generateNewLevel();
+                    }, 200);
+                }
+                game.player.updatePlayer();
+                break;
+            case "ArrowUp":
+                game.player.moveUp();
+                game.checkWallCollision();
+                if (game.isItemCollision()) {
+                    game.collectItem();
+                    setTimeout(() => {
+                        game.generateNewLevel();
+                    }, 200);
+                }
+                game.player.updatePlayer();
+                break;
+            case "ArrowDown":
+                game.player.moveDown();
+                game.checkWallCollision();
+                if (game.isItemCollision()) {
+                    game.collectItem();
+                    setTimeout(() => {
+                        game.generateNewLevel();
+                    }, 200);
+                }
+                game.player.updatePlayer();
+                break;
+        }
     }
+    
 });
