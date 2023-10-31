@@ -69,6 +69,21 @@ class Game {
         }
     }
 
+    isEnnemy1Superposition() {
+        for(let i = 0; i < this.ennemy1Arr.length; i++) {
+            for(let j = this.ennemy1Arr.length-1; j >= i ;j--){
+                if (this.ennemy1Arr[j].positionXGrid === this.ennemy1Arr[i].positionXGrid &&
+                    this.ennemy1Arr[j].positionYGrid === this.ennemy1Arr[i].positionYGrid
+                ) {
+                    return true;
+                } else {
+    
+                }
+            }
+        }
+        return false;
+    }
+
     collectItem() {
         setTimeout(() => {
             alert("You've collected an Item!");
@@ -93,12 +108,26 @@ class Game {
             do {
                 this.ennemy1Arr[i].positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
                 this.ennemy1Arr[i].positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
-            } while (this.isEnnemy1Collision());
+            } while (this.isEnnemy1Collision() &&
+            (
+                this.ennemy1Arr[i].positionXGrid === this.item.positionXGrid &&
+                this.ennemy1Arr[i].positionYGrid === this.item.positionYGrid
+            ) & isEnnemy1Superposition()
+
+        );
             this.ennemy1Arr[i].updateEnnemy1();
         }
-
         this.ennemy1Arr.push(new Ennemy1());
         
+        while(this.ennemy1Arr.length != this.score + 1) {
+            this.ennemy1Arr.push(new Ennemy1());
+            if(isEnnemy1Superposition()) {
+                let superpozedNewEnnemy1 = this.boardElm.lastElementChild;
+                superpozedNewEnnemy1.remove();
+                this.ennemy1Arr.pop();
+            }
+        }
+
         for (let i = 0; i < this.ennemy2Arr.length; i++) {
             clearInterval(this.ennemy2Arr[i].movementIntervalId);
             this.ennemy2Arr[i].initializeMovement();

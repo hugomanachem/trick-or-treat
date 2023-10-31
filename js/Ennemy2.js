@@ -13,9 +13,9 @@ class Ennemy2 {
 
 
         this.positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
-        this.positionX = this.boardOriginX + ((this.positionXGrid)*50) - this.width;
+        this.positionX = this.boardOriginX + ((this.positionXGrid) * 50) - this.width;
         this.positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
-        this.positionY = this.boardOriginY + ((this.positionYGrid)*50) - this.height;
+        this.positionY = this.boardOriginY + ((this.positionYGrid) * 50) - this.height;
 
         // dom manipulation to reflect initial values (size, position)   
         this.createDomElement();
@@ -24,10 +24,10 @@ class Ennemy2 {
 
     initializeMovement() {
         let chosenValue = Math.random() < 0.5 ? "horizontal" : "vertical";
-        if(chosenValue === "horizontal") {
+        if (chosenValue === "horizontal") {
             this.positionXGrid = 1;
             this.positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
-            this.updateEnnemy2(); 
+            this.updateEnnemy2();
             let isFollowingXAxis = true;
             this.movementIntervalId = setInterval(() => {
                 if (isFollowingXAxis) {
@@ -37,7 +37,7 @@ class Ennemy2 {
                     } else if (this.positionXGrid === 24) {
                         isFollowingXAxis = !isFollowingXAxis;
                     }
-                    
+
                 } else {
                     if (this.positionXGrid > 1) {
                         this.positionXGrid--;
@@ -47,11 +47,11 @@ class Ennemy2 {
                     }
                 }
                 this.isCollisionWithPlayer();
-            },100)
-        }  else {
+            }, 1000)
+        } else {
             this.positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
             this.positionYGrid = 12;
-            this.updateEnnemy2(); 
+            this.updateEnnemy2();
             let isFollowingYAxis = true;
             this.movementIntervalId = setInterval(() => {
                 if (isFollowingYAxis) {
@@ -61,7 +61,7 @@ class Ennemy2 {
                     } else if (this.positionYGrid === 1) {
                         isFollowingYAxis = !isFollowingYAxis;
                     }
-                    
+
                 } else {
                     if (this.positionYGrid < 12) {
                         this.positionYGrid++;
@@ -71,21 +71,21 @@ class Ennemy2 {
                     }
                 }
                 this.isCollisionWithPlayer();
-            },100)
-        } 
+            }, 1000)
+        }
     }
 
     updateEnnemy2() {
-        this.positionX = this.boardOriginX + ((this.positionXGrid)*50) - this.width;
-        this.positionY = this.boardOriginY + ((this.positionYGrid)*50) - this.height;
-        
+        this.positionX = this.boardOriginX + ((this.positionXGrid) * 50) - this.width;
+        this.positionY = this.boardOriginY + ((this.positionYGrid) * 50) - this.height;
+
         this.ennemy2Elm.style.width = this.width + "px";
         this.ennemy2Elm.style.height = this.height + "px";
         this.ennemy2Elm.style.left = this.positionX + "px";
         this.ennemy2Elm.style.bottom = this.positionY + "px";
     }
 
-    isCollisionWithPlayer(){
+    isCollisionWithPlayer() {
         if (game.player.positionXGrid === this.positionXGrid &&
             game.player.positionYGrid === this.positionYGrid
         ) {
