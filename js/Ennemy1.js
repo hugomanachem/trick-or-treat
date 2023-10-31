@@ -11,18 +11,18 @@ class Ennemy1 {
         this.boardHeight = (Array(this.boardElm.attributes))[0][0].ownerElement.clientHeight;
 
         this.positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
-        this.positionX = this.boardOriginX + ((this.positionXGrid)*50) - this.width;
+        this.positionX = this.boardOriginX + ((this.positionXGrid) * 50) - this.width;
         this.positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
-        this.positionY = this.boardOriginY + ((this.positionYGrid)*50) - this.height;
+        this.positionY = this.boardOriginY + ((this.positionYGrid) * 50) - this.height;
 
         // dom manipulation to reflect initial values (size, position)
         this.createDomElement();
     }
 
     updateEnnemy1() {
-        this.positionX = this.boardOriginX + ((this.positionXGrid)*50) - this.width;
-        this.positionY = this.boardOriginY + ((this.positionYGrid)*50) - this.height;
-        
+        this.positionX = this.boardOriginX + ((this.positionXGrid) * 50) - this.width;
+        this.positionY = this.boardOriginY + ((this.positionYGrid) * 50) - this.height;
+
         this.ennemy1Elm.style.width = this.width + "px";
         this.ennemy1Elm.style.height = this.height + "px";
         this.ennemy1Elm.style.left = this.positionX + "px";
