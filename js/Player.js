@@ -11,8 +11,8 @@ class Player {
         this.boardWidth = (Array(this.boardElm.attributes))[0][0].ownerElement.clientWidth;
         this.boardHeight = (Array(this.boardElm.attributes))[0][0].ownerElement.clientHeight;
 
-        this.positionX = this.boardOriginX;
-        this.positionY = this.boardOriginY;
+        this.positionX = this.boardOriginX + ((Math.floor(Math.random() * (24 - 1 + 1)) + 1)*50) - this.width;
+        this.positionY = this.boardOriginY + ((Math.floor(Math.random() * (12 - 1 + 1)) + 1)*50) - this.height;
 
         // dom manipulation to reflect initial values (size, position)
         this.playerElm = document.getElementById("player");
