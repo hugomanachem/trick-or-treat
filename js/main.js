@@ -8,12 +8,11 @@ class Game {
 
         this.player = new Player();
         this.item = new Item();
-
-        this.isMalus = false;
-
         this.ennemy1Arr = [];
         const newEnnemy1 = new Ennemy1();
         this.ennemy1Arr.push(newEnnemy1);
+
+        this.isMalus = false;
 
         this.scoreElm = document.getElementById('score');
         this.score = 0;
@@ -25,30 +24,28 @@ class Game {
     }
 
     checkWallCollision() {
-        if (this.player.positionX < this.boardOriginX) {
-            this.player.positionX = this.boardOriginX;
+        if (this.player.positionXGrid < 1) {
+            this.player.positionXGrid++;
             this.player.updatePlayer();
             console.log("Collision detected on the left");
-        } else if (this.player.positionX + this.player.width > this.boardOriginX + this.boardWidth) {
-            this.player.positionX = this.boardOriginX + this.boardWidth - this.player.width;
+        } else if (this.player.positionXGrid > 24) {
+            this.player.positionXGrid--;
             this.player.updatePlayer();
             console.log("Collision detected on the right");
-        } else if (this.player.positionY + this.player.height > this.boardOriginY + this.boardHeight) {
-            this.player.positionY = this.boardOriginY + this.boardHeight - this.player.height;
+        } else if (this.player.positionYGrid > 12) {
+            this.player.positionYGrid--;
             this.player.updatePlayer();
             console.log("Collision detected on the top");
-        } else if (this.player.positionY < this.boardOriginY) {
-            this.player.positionY = this.boardOriginY;
+        } else if (this.player.positionYGrid < 1) {
+            this.player.positionYGrid++;
             this.player.updatePlayer();
             console.log("Collision detected on the bottom");
         }
     }
 
     isItemCollision() {
-        if (this.player.positionX < this.item.positionX + this.item.width &&
-            this.player.positionX + this.player.width > this.item.positionX &&
-            this.player.positionY < this.item.positionY + this.item.height &&
-            this.player.positionY + this.player.height > this.item.positionY
+        if (this.player.positionXGrid === this.item.positionXGrid &&
+            this.player.positionYGrid === this.item.positionYGrid
         ) {
             return true;
 
@@ -59,25 +56,18 @@ class Game {
 
     isEnnemy1Collision() {
         for (let i = 0; i < this.ennemy1Arr.length; i++) {
-            if (this.player.positionX < this.ennemy1Arr[i].positionX + this.ennemy1Arr[i].width &&
-                this.player.positionX + this.player.width > this.ennemy1Arr[i].positionX &&
-                this.player.positionY < this.ennemy1Arr[i].positionY + this.ennemy1Arr[i].height &&
-                this.player.positionY + this.player.height > this.ennemy1Arr[i].positionY
+            if (this.player.positionXGrid === this.ennemy1Arr[i].positionXGrid &&
+                this.player.positionYGrid === this.ennemy1Arr[i].positionYGrid
             ) {
                 return true;
-    
             } else {
-                
+
             }
-        } 
+        }
     }
 
     collectItem() {
-        this.player.positionX = this.item.positionX;
-        this.player.positionY = this.item.positionY;
-        this.player.updatePlayer();
         setTimeout(() => {
-            this.player.updatePlayer();
             alert("You've collected an Item!");
         }, 10);
         this.score++;
@@ -85,35 +75,31 @@ class Game {
     }
 
     generateNewLevel() {
-        this.player.positionX = this.boardOriginX + ((Math.floor(Math.random() * (24 - 1 + 1)) + 1)*50) - this.player.width;
-        this.player.positionY = this.boardOriginY + ((Math.floor(Math.random() * (12 - 1 + 1)) + 1)*50) - this.player.height;
+        this.player.positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
+        this.player.positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
         this.player.updatePlayer();
-        
+
         console.log(this.ennemy1Arr);
-        for(let i = 0; i < this.ennemy1Arr.length; i++) {
+        for (let i = 0; i < this.ennemy1Arr.length; i++) {
             do {
-                this.ennemy1Arr[i].positionX = this.boardOriginX + ((Math.floor(Math.random() * (24 - 1 + 1)) + 1)*50) - this.ennemy1Arr[i].width;
-                this.ennemy1Arr[i].positionY = this.boardOriginY + ((Math.floor(Math.random() * (12 - 1 + 1)) + 1)*50) - this.ennemy1Arr[i].height;     
+                this.ennemy1Arr[i].positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
+                this.ennemy1Arr[i].positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
             } while (this.isEnnemy1Collision());
             this.ennemy1Arr[i].updateEnnemy1();
         }
         console.log(this.ennemy1Arr);
-        while(this.ennemy1Arr.length < this.score * 2) {
+        while (this.ennemy1Arr.length < this.score * 2) {
             const newEnnemy1 = new Ennemy1();
             this.ennemy1Arr.push(newEnnemy1);
         }
 
         do {
-            this.item.positionX = this.boardOriginX + ((Math.floor(Math.random() * (24 - 1 + 1)) + 1)*50) - this.item.width;
-            this.item.positionY = this.boardOriginY + ((Math.floor(Math.random() * (12 - 1 + 1)) + 1)*50) - this.item.height;
+            this.item.positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
+            this.item.positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
         } while (this.isItemCollision());
-
-         
-       
-        //this.isMalus = !this.isMalus;
-        
         this.item.updateItem();
 
+        this.isMalus = !this.isMalus;
     }
 
     setTimer() {
