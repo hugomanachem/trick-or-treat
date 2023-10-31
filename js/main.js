@@ -8,9 +8,12 @@ class Game {
 
         this.player = new Player();
         this.item = new Item();
+
         this.ennemy1Arr = [];
-        const newEnnemy1 = new Ennemy1();
-        this.ennemy1Arr.push(newEnnemy1);
+        this.ennemy1Arr.push(new Ennemy1());
+
+        this.ennemy2Arr = [];
+        this.ennemy2Arr.push(new Ennemy2());
 
         this.isMalus = false;
 
@@ -79,7 +82,13 @@ class Game {
         this.player.positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
         this.player.updatePlayer();
 
-        console.log(this.ennemy1Arr);
+        do {
+            this.item.positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
+            this.item.positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
+        } while (this.isItemCollision());
+        this.item.updateItem();
+
+        
         for (let i = 0; i < this.ennemy1Arr.length; i++) {
             do {
                 this.ennemy1Arr[i].positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
@@ -87,19 +96,19 @@ class Game {
             } while (this.isEnnemy1Collision());
             this.ennemy1Arr[i].updateEnnemy1();
         }
-        console.log(this.ennemy1Arr);
-        while (this.ennemy1Arr.length < this.score * 2) {
-            const newEnnemy1 = new Ennemy1();
-            this.ennemy1Arr.push(newEnnemy1);
+
+        this.ennemy1Arr.push(new Ennemy1());
+        
+        for (let i = 0; i < this.ennemy2Arr.length; i++) {
+            clearInterval(this.ennemy2Arr[i].movementIntervalId);
+            this.ennemy2Arr[i].initializeMovement();
         }
 
-        do {
-            this.item.positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
-            this.item.positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
-        } while (this.isItemCollision());
-        this.item.updateItem();
-
-        this.isMalus = !this.isMalus;
+        if (this.ennemy2Arr.length * 2 < this.score) {
+            this.ennemy2Arr.push(new Ennemy2());
+        }
+        
+        //this.isMalus = !this.isMalus;
     }
 
     setTimer() {
