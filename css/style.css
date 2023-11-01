@@ -47,8 +47,8 @@ body {
 }
 
 #item {
-    background-image: url("../img/candy1.png");
-    
+    background-image: url("../img/candy.png");
+
     background-origin: border-box;
     background-position: center;
     background-size: cover;
