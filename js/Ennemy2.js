@@ -1,6 +1,8 @@
 class Ennemy2 {
     constructor() {
         // initialize properties
+        this.ennemy2Elm = null;
+
         this.width = 50;
         this.height = 50;
         this.movementIntervalId = null;
@@ -25,6 +27,7 @@ class Ennemy2 {
     initializeMovement() {
         let chosenValue = Math.random() < 0.5 ? "horizontal" : "vertical";
         if (chosenValue === "horizontal") {
+            this.ennemy2Elm.className = "ennemy2-left-to-right";
             this.positionXGrid = 1;
             this.positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
             this.updateEnnemy2();
@@ -36,6 +39,7 @@ class Ennemy2 {
                         this.updateEnnemy2();
                     } else if (this.positionXGrid === 24) {
                         isFollowingXAxis = !isFollowingXAxis;
+                        this.ennemy2Elm.className = "ennemy2-right-to-left";
                     }
 
                 } else {
@@ -44,11 +48,13 @@ class Ennemy2 {
                         this.updateEnnemy2();
                     } else if (this.positionXGrid === 1) {
                         isFollowingXAxis = !isFollowingXAxis;
+                        this.ennemy2Elm.className = "ennemy2-left-to-right";
                     }
                 }
                 this.isCollisionWithPlayer();
             }, 1000)
         } else {
+            this.ennemy2Elm.className = "ennemy2-up-to-down";
             this.positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
             this.positionYGrid = 12;
             this.updateEnnemy2();
@@ -60,6 +66,7 @@ class Ennemy2 {
                         this.updateEnnemy2();
                     } else if (this.positionYGrid === 1) {
                         isFollowingYAxis = !isFollowingYAxis;
+                        this.ennemy2Elm.className = "ennemy2-down-to-up";
                     }
 
                 } else {
@@ -68,6 +75,7 @@ class Ennemy2 {
                         this.updateEnnemy2();
                     } else if (this.positionYGrid === 12) {
                         isFollowingYAxis = !isFollowingYAxis;
+                        this.ennemy2Elm.className = "ennemy2-up-to-down";
                     }
                 }
                 this.isCollisionWithPlayer();

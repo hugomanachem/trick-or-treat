@@ -10,9 +10,9 @@ class Ennemy1 {
         this.boardWidth = (Array(this.boardElm.attributes))[0][0].ownerElement.clientWidth;
         this.boardHeight = (Array(this.boardElm.attributes))[0][0].ownerElement.clientHeight;
 
-        this.positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
+        this.positionXGrid = Math.floor(Math.random() * (23 - 2 + 1)) + 2;
         this.positionX = this.boardOriginX + ((this.positionXGrid) * 50) - this.width;
-        this.positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
+        this.positionYGrid = Math.floor(Math.random() * (11 - 2 + 1)) + 2;
         this.positionY = this.boardOriginY + ((this.positionYGrid) * 50) - this.height;
 
         // dom manipulation to reflect initial values (size, position)

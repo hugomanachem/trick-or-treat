@@ -8,7 +8,7 @@ class Game {
 
         this.player = new Player();
         this.updatePlayer();
-        this.item = new Item();
+        this.item =  new Item();
         this.updateItem();
 
         this.ennemy1Arr = [];
@@ -32,15 +32,18 @@ class Game {
         if (this.player.positionXGrid < 1) {
             this.player.positionXGrid++;
             this.updatePlayer();
+
             console.log("Collision detected on the left");
         } else if (this.player.positionXGrid > 24) {
             this.player.positionXGrid--;
             this.updatePlayer();
             console.log("Collision detected on the right");
+
         } else if (this.player.positionYGrid > 12) {
             this.player.positionYGrid--;
             this.updatePlayer();
             console.log("Collision detected on the top");
+            
         } else if (this.player.positionYGrid < 1) {
             this.player.positionYGrid++;
             this.updatePlayer();
@@ -48,9 +51,9 @@ class Game {
         }
     }
 
-    isItemCollision() {
-        if (this.player.positionXGrid === this.item.positionXGrid &&
-            this.player.positionYGrid === this.item.positionYGrid
+    isElementsCollision(elm1,elm2) {
+        if (elm1.positionXGrid === elm2.positionXGrid &&
+            elm1.positionYGrid === elm2.positionYGrid
         ) {
             return true;
 
@@ -102,14 +105,14 @@ class Game {
         do {
             this.item.positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
             this.item.positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
-        } while (this.isItemCollision());
+        } while (this.isElementsCollision(this.player,this.item));
         this.updateItem();
 
 
         for (let i = 0; i < this.ennemy1Arr.length; i++) {
             do {
-                this.ennemy1Arr[i].positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
-                this.ennemy1Arr[i].positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
+                this.ennemy1Arr[i].positionXGrid = Math.floor(Math.random() * (23 - 2 + 1)) + 2;
+                this.ennemy1Arr[i].positionYGrid = Math.floor(Math.random() * (11 - 2 + 1)) + 2;
             } while (this.isEnnemy1Collision() &&
                 (
                     this.ennemy1Arr[i].positionXGrid === this.item.positionXGrid &&
@@ -186,7 +189,7 @@ document.addEventListener("keydown", (e) => {
                 if (game.isEnnemy1Collision()) {
                     location.href = "scorePage.html";
 
-                } else if (game.isItemCollision()) {
+                } else if (game.isElementsCollision(game.player,game.item)) {
                     game.collectItem();
                     setTimeout(() => {
                         game.generateNewLevel();
@@ -201,7 +204,7 @@ document.addEventListener("keydown", (e) => {
                 if (game.isEnnemy1Collision()) {
                     location.href = "scorePage.html";
 
-                } else if (game.isItemCollision()) {
+                } else if (game.isElementsCollision(game.player,game.item)) {
                     game.collectItem();
                     setTimeout(() => {
                         game.generateNewLevel();
@@ -215,7 +218,7 @@ document.addEventListener("keydown", (e) => {
                 if (game.isEnnemy1Collision()) {
                     location.href = "scorePage.html";
 
-                } else if (game.isItemCollision()) {
+                } else if (game.isElementsCollision(game.player,game.item)) {
                     game.collectItem();
                     setTimeout(() => {
                         game.generateNewLevel();
@@ -229,7 +232,7 @@ document.addEventListener("keydown", (e) => {
                 if (game.isEnnemy1Collision()) {
                     location.href = "scorePage.html";
 
-                } else if (game.isItemCollision()) {
+                } else if (game.isElementsCollision(game.player,game.item)) {
                     game.collectItem();
                     setTimeout(() => {
                         game.generateNewLevel();
@@ -246,7 +249,7 @@ document.addEventListener("keydown", (e) => {
                 if (game.isEnnemy1Collision()) {
                     location.href = "scorePage.html";
 
-                } else if (game.isItemCollision()) {
+                } else if (game.isElementsCollision(game.player,game.item)) {
                     game.collectItem();
                     setTimeout(() => {
                         game.generateNewLevel();
@@ -261,7 +264,7 @@ document.addEventListener("keydown", (e) => {
                 if (game.isEnnemy1Collision()) {
                     location.href = "scorePage.html";
 
-                } else if (game.isItemCollision()) {
+                } else if (game.isElementsCollision(game.player,game.item)) {
                     game.collectItem();
                     setTimeout(() => {
                         game.generateNewLevel();
@@ -275,7 +278,7 @@ document.addEventListener("keydown", (e) => {
                 if (game.isEnnemy1Collision()) {
                     location.href = "scorePage.html";
 
-                } else if (game.isItemCollision()) {
+                } else if (game.isElementsCollision(game.player,game.item)) {
                     game.collectItem();
                     setTimeout(() => {
                         game.generateNewLevel();
@@ -289,7 +292,7 @@ document.addEventListener("keydown", (e) => {
                 if (game.isEnnemy1Collision()) {
                     location.href = "scorePage.html";
 
-                } else if (game.isItemCollision()) {
+                } else if (game.isElementsCollision(game.player,game.item)) {
                     game.collectItem();
                     setTimeout(() => {
                         game.generateNewLevel();

@@ -34,16 +34,24 @@ body {
     height: 600px;
     position : static;
     overflow: hidden;
-    background-color: white;
+    background-image: url("../img/floor1.png");
+    background-size: 50px 50px;
 }
 
 #player {
-    background-color: limegreen;
+    background-image: url("../img/hero.png");
+    background-origin: border-box;
+    background-position: center;
+    background-size: 100%;
     position: absolute;
 }
 
 #item {
-    background-color: gold;
+    background-image: url("../img/candy1.png");
+    
+    background-origin: border-box;
+    background-position: center;
+    background-size: cover;
     position: absolute;
 }
 
@@ -100,11 +108,58 @@ p {
 }
 
 .ennemy1 {
-    background-color: red;
+    background-image: url("../img/jack-o’-lantern.png");
+    background-position: center;
+    background-size: 70%;
+    background-repeat: no-repeat;
     position: absolute;
 }
 
 .ennemy2 {
-    background-color: orange;
+    background-image: url("../img/ghost.png");
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.ennemy2-left-to-right {
+    background-image: url("../img/ghost.png");
+    transform: scaleX(-1);
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.ennemy2-right-to-left {
+    background-image: url("../img/ghost.png");
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.ennemy2-up-to-down {
+    background-image: url("../img/ghost.png");
+    transform: rotate(-90deg);
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.ennemy2-down-to-up {
+    background-image: url("../img/ghost.png");
+    transform: scaleX(-1);
+    transform: rotate(90deg);
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     position: absolute;
 }
