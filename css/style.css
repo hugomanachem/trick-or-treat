@@ -139,11 +139,22 @@ h2 {
     line-height: 2rem;
 }
 
-#end-score-div {
+#loosing-game-div {
     width: 1200px;
     height: 600px;
     overflow: hidden;
-    background-image: url("../img/endgame-background.jpg");
+    background-image: url("../img/loosing-game-background.jpg");
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#winning-game-div {
+    width: 1200px;
+    height: 600px;
+    overflow: hidden;
+    background-image: url("../img/winning-page-background.jpg");
     display: flex;
     flex-direction: column;
     justify-content: center;

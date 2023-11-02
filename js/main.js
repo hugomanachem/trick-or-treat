@@ -164,7 +164,7 @@ class Game {
                 this.timerElm.innerText = this.time;
                 this.time--;
             } else {
-                location.href = "scorePage.html";
+                location.href = "winningPage.html";
             }
         }, 1000);
     }
@@ -199,7 +199,7 @@ document.addEventListener("keydown", (e) => {
                 game.player.moveRight(true);
                 game.checkWallCollision();
                 if (game.isEnnemy1Collision()) {
-                    location.href = "scorePage.html";
+                    location.href = "loosingPage.html";
 
                 } else if (game.isElementsCollision(game.player,game.item)) {
                     game.collectItem();
@@ -214,7 +214,7 @@ document.addEventListener("keydown", (e) => {
                 game.player.moveLeft(true);
                 game.checkWallCollision();
                 if (game.isEnnemy1Collision()) {
-                    location.href = "scorePage.html";
+                    location.href = "loosingPage.html";
 
                 } else if (game.isElementsCollision(game.player,game.item)) {
                     game.collectItem();
@@ -228,7 +228,7 @@ document.addEventListener("keydown", (e) => {
                 game.player.moveDown(true);
                 game.checkWallCollision();
                 if (game.isEnnemy1Collision()) {
-                    location.href = "scorePage.html";
+                    location.href = "loosingPage.html";
 
                 } else if (game.isElementsCollision(game.player,game.item)) {
                     game.collectItem();
@@ -242,7 +242,7 @@ document.addEventListener("keydown", (e) => {
                 game.player.moveUp(true);
                 game.checkWallCollision(true);
                 if (game.isEnnemy1Collision()) {
-                    location.href = "scorePage.html";
+                    location.href = "loosingPage.html";
 
                 } else if (game.isElementsCollision(game.player,game.item)) {
                     game.collectItem();
@@ -259,7 +259,7 @@ document.addEventListener("keydown", (e) => {
                 game.player.moveLeft(false);
                 game.checkWallCollision();
                 if (game.isEnnemy1Collision()) {
-                    location.href = "scorePage.html";
+                    location.href = "loosingPage.html";
 
                 } else if (game.isElementsCollision(game.player,game.item)) {
                     game.collectItem();
@@ -274,7 +274,7 @@ document.addEventListener("keydown", (e) => {
                 game.player.moveRight(false);
                 game.checkWallCollision();
                 if (game.isEnnemy1Collision()) {
-                    location.href = "scorePage.html";
+                    location.href = "loosingPage.html";
 
                 } else if (game.isElementsCollision(game.player,game.item)) {
                     game.collectItem();
@@ -288,7 +288,7 @@ document.addEventListener("keydown", (e) => {
                 game.player.moveUp(false);
                 game.checkWallCollision();
                 if (game.isEnnemy1Collision()) {
-                    location.href = "scorePage.html";
+                    location.href = "loosingPage.html";
 
                 } else if (game.isElementsCollision(game.player,game.item)) {
                     game.collectItem();
@@ -302,7 +302,7 @@ document.addEventListener("keydown", (e) => {
                 game.player.moveDown(false);
                 game.checkWallCollision();
                 if (game.isEnnemy1Collision()) {
-                    location.href = "scorePage.html";
+                    location.href = "loosingPage.html";
 
                 } else if (game.isElementsCollision(game.player,game.item)) {
                     game.collectItem();

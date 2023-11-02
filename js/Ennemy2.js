@@ -103,7 +103,7 @@ class Ennemy2 {
         if (game.player.positionXGrid === this.positionXGrid &&
             game.player.positionYGrid === this.positionYGrid
         ) {
-            location.href = "scorePage.html";
+            location.href = "loosingPage.html";
         } else {
 
         }
