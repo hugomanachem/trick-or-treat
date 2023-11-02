@@ -54,7 +54,7 @@ class Ennemy2 {
                     }
                     this.isCollisionWithPlayer();
                 }, (500))
-            },1000);
+            },500);
             
         } else {
             this.ennemy2Elm.className = "ennemy2-up-to-down";
@@ -84,7 +84,7 @@ class Ennemy2 {
                     }
                     this.isCollisionWithPlayer();
                 }, (500))
-            },1000);
+            },500);
             
         }
     }

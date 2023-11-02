@@ -77,8 +77,7 @@ class Game {
     isEnnemy1Superposition() {
         for (let i = 0; i < this.ennemy1Arr.length; i++) {
             for (let j = this.ennemy1Arr.length - 1; j >= i; j--) {
-                if (this.ennemy1Arr[j].positionXGrid === this.ennemy1Arr[i].positionXGrid &&
-                    this.ennemy1Arr[j].positionYGrid === this.ennemy1Arr[i].positionYGrid
+                if (this.isElementsCollision(this.ennemy1Arr[i],this.ennemy1Arr[j])
                 ) {
                     return true;
                 } else {
@@ -97,8 +96,8 @@ class Game {
     generateNewLevel() {
         this.isMalus = !this.isMalus;
 
-        this.player.positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
-        this.player.positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
+        this.player.positionXGrid = Math.floor(Math.random() * (23 - 1 + 1)) + 1;
+        this.player.positionYGrid = Math.floor(Math.random() * (11 - 1 + 1)) + 1;
         if(this.isMalus) {
             this.player.playerElm.id = "player-left-malus";
         } else {
@@ -117,13 +116,11 @@ class Game {
             do {
                 this.ennemy1Arr[i].positionXGrid = Math.floor(Math.random() * (23 - 2 + 1)) + 2;
                 this.ennemy1Arr[i].positionYGrid = Math.floor(Math.random() * (11 - 2 + 1)) + 2;
-            } while (this.isEnnemy1Collision() &&
-                (
-                    this.ennemy1Arr[i].positionXGrid === this.item.positionXGrid &&
-                    this.ennemy1Arr[i].positionYGrid === this.item.positionYGrid
-                ) && isEnnemy1Superposition() 
+            } while (this.isElementsCollision(this.player, this.ennemy1Arr[i]) &&
+                    this.isElementsCollision(this.item,this.ennemy1Arr[i]) &&
+                    isEnnemy1Superposition() 
 
-            );
+                );
             this.ennemy1Arr[i].updateEnnemy1();
         }
         this.ennemy1Arr.push(new Ennemy1());
@@ -137,6 +134,7 @@ class Game {
             }
         }
 
+        
         for (let i = 0; i < this.ennemy2Arr.length; i++) {
             clearInterval(this.ennemy2Arr[i].movementIntervalId);
             this.ennemy2Arr[i].initializeMovement();
