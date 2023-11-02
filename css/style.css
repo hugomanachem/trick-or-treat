@@ -38,6 +38,19 @@ body {
 
 }
 
+#menu {
+    width: 1200px;
+    height: 600px;
+    position : static;
+    overflow: hidden;
+    background-image: url("../img/menu-background.jpg");
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 #player {
     background-image: url("../img/hero.png");
     background-position: bottom;
@@ -130,7 +143,7 @@ h2 {
     width: 1200px;
     height: 600px;
     overflow: hidden;
-    background-color: black;
+    background-image: url("../img/endgame-background.jpg");
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -138,17 +151,20 @@ h2 {
 }
 
 a {
-    color: white;
-    padding: 10px;
-    border: 1px solid white;
+    font-size: xx-large;
+    font-weight: bolder;
+    color: black;
+    border: 5px solid black;
     text-decoration: none;
+    padding : 5px;
 }
 
 a:hover {
-    background-color: white;
+    background-color: orange;
+    font-size: xx-large;
+    font-weight: bolder;
     color: black;
-    padding: 10px;
-    border: 1px solid black;
+    border: 5px solid black;
     text-decoration: none;
 }
 
