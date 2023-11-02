@@ -114,13 +114,25 @@ class Game {
 
         for (let i = 0; i < this.ennemy1Arr.length; i++) {
             do {
+                this.isSuperpozed = true;
                 this.ennemy1Arr[i].positionXGrid = Math.floor(Math.random() * (23 - 2 + 1)) + 2;
                 this.ennemy1Arr[i].positionYGrid = Math.floor(Math.random() * (11 - 2 + 1)) + 2;
-            } while (this.isElementsCollision(this.player, this.ennemy1Arr[i]) &&
-                    this.isElementsCollision(this.item,this.ennemy1Arr[i]) &&
-                    isEnnemy1Superposition() 
-
-                );
+                if (this.ennemy1Arr[i].positionXGrid === this.player.positionXGrid && this.ennemy1Arr[i].positionYGrid === this.player.positionYGrid) {
+                    this.isSuperpozed = true;
+                } else {
+                    this.isSuperpozed = false;
+                }
+                if (this.ennemy1Arr[i].positionXGrid === this.item.positionXGrid && this.ennemy1Arr[i].positionYGrid === this.item.positionYGrid) {
+                    this.isSuperpozed = true;
+                } else {
+                    this.isSuperpozed = false;
+                }
+                if(this.isEnnemy1Collision()) {
+                    this.isSuperpozed = true;
+                } else {
+                    this.isSuperpozed = false;
+                }
+            } while (this.isSuperpozed);
             this.ennemy1Arr[i].updateEnnemy1();
         }
         this.ennemy1Arr.push(new Ennemy1());
