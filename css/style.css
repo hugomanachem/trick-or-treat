@@ -34,24 +34,75 @@ body {
     height: 600px;
     position : static;
     overflow: hidden;
-    background-image: url("../img/floor1.png");
-    background-size: 50px 50px;
+    background-image: url("../img/floor.png");
+
 }
 
 #player {
     background-image: url("../img/hero.png");
-    background-origin: border-box;
-    background-position: center;
-    background-size: 100%;
+    background-position: bottom;
+    background-size: 180%;
+    transform: scaleX(-1);
+
+    background-repeat: no-repeat;
     position: absolute;
 }
+
+#player-malus {
+    background-image: url("../img/hero-malus.png");
+    background-position: bottom;
+    background-size: 180%;
+    transform: scaleX(-1);
+
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+#player-left {
+    background-image: url("../img/hero.png");
+    background-position: bottom;
+    background-size: 180%;
+    transform: scaleX(-1);
+
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+#player-left-malus {
+    background-image: url("../img/hero-malus.png");
+    background-position: bottom;
+    background-size: 180%;
+    transform: scaleX(-1);
+
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+#player-right {
+    background-image: url("../img/hero.png");
+    background-position: bottom;
+    background-size: 180%;
+
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+#player-right-malus {
+    background-image: url("../img/hero-malus.png");
+    background-position: bottom;
+    background-size: 180%;
+
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
 
 #item {
     background-image: url("../img/candy.png");
 
     background-origin: border-box;
     background-position: center;
-    background-size: cover;
+    background-size: 140%;
     position: absolute;
 }
 
@@ -109,17 +160,8 @@ p {
 
 .ennemy1 {
     background-image: url("../img/jack-o’-lantern.png");
-    background-position: center;
-    background-size: 70%;
-    background-repeat: no-repeat;
-    position: absolute;
-}
-
-.ennemy2 {
-    background-image: url("../img/ghost.png");
-
-    background-position: center;
-    background-size: cover;
+    background-position:bottom;
+    background-size: 80%;
     background-repeat: no-repeat;
     position: absolute;
 }

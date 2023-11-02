@@ -90,16 +90,20 @@ class Game {
     }
 
     collectItem() {
-        setTimeout(() => {
-            alert("You've collected an Item!");
-        }, 10);
         this.score++;
         this.scoreElm.innerText = this.score;
     }
 
     generateNewLevel() {
+        this.isMalus = !this.isMalus;
+
         this.player.positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
         this.player.positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
+        if(this.isMalus) {
+            this.player.playerElm.id = "player-left-malus";
+        } else {
+            this.player.playerElm.id = "player-left";
+        }
         this.updatePlayer();
 
         do {
@@ -117,7 +121,7 @@ class Game {
                 (
                     this.ennemy1Arr[i].positionXGrid === this.item.positionXGrid &&
                     this.ennemy1Arr[i].positionYGrid === this.item.positionYGrid
-                ) & isEnnemy1Superposition()
+                ) && isEnnemy1Superposition() 
 
             );
             this.ennemy1Arr[i].updateEnnemy1();
@@ -141,8 +145,6 @@ class Game {
         if (this.ennemy2Arr.length * 2 < this.score) {
             this.ennemy2Arr.push(new Ennemy2());
         }
-
-        //this.isMalus = !this.isMalus;
     }
 
     setTimer() {
@@ -184,7 +186,7 @@ document.addEventListener("keydown", (e) => {
     if (game.isMalus) {
         switch (e.code) {
             case "ArrowLeft":
-                game.player.moveRight();
+                game.player.moveRight(true);
                 game.checkWallCollision();
                 if (game.isEnnemy1Collision()) {
                     location.href = "scorePage.html";
@@ -199,7 +201,7 @@ document.addEventListener("keydown", (e) => {
                 game.updatePlayer();
                 break;
             case "ArrowRight":
-                game.player.moveLeft();
+                game.player.moveLeft(true);
                 game.checkWallCollision();
                 if (game.isEnnemy1Collision()) {
                     location.href = "scorePage.html";
@@ -213,7 +215,7 @@ document.addEventListener("keydown", (e) => {
                 game.updatePlayer();
                 break;
             case "ArrowUp":
-                game.player.moveDown();
+                game.player.moveDown(true);
                 game.checkWallCollision();
                 if (game.isEnnemy1Collision()) {
                     location.href = "scorePage.html";
@@ -227,8 +229,8 @@ document.addEventListener("keydown", (e) => {
                 game.updatePlayer();
                 break;
             case "ArrowDown":
-                game.player.moveUp();
-                game.checkWallCollision();
+                game.player.moveUp(true);
+                game.checkWallCollision(true);
                 if (game.isEnnemy1Collision()) {
                     location.href = "scorePage.html";
 
@@ -244,7 +246,7 @@ document.addEventListener("keydown", (e) => {
     } else {
         switch (e.code) {
             case "ArrowLeft":
-                game.player.moveLeft();
+                game.player.moveLeft(false);
                 game.checkWallCollision();
                 if (game.isEnnemy1Collision()) {
                     location.href = "scorePage.html";
@@ -259,7 +261,7 @@ document.addEventListener("keydown", (e) => {
                 game.updatePlayer();
                 break;
             case "ArrowRight":
-                game.player.moveRight();
+                game.player.moveRight(false);
                 game.checkWallCollision();
                 if (game.isEnnemy1Collision()) {
                     location.href = "scorePage.html";
@@ -273,7 +275,7 @@ document.addEventListener("keydown", (e) => {
                 game.updatePlayer();
                 break;
             case "ArrowUp":
-                game.player.moveUp();
+                game.player.moveUp(false);
                 game.checkWallCollision();
                 if (game.isEnnemy1Collision()) {
                     location.href = "scorePage.html";
@@ -287,7 +289,7 @@ document.addEventListener("keydown", (e) => {
                 game.updatePlayer();
                 break;
             case "ArrowDown":
-                game.player.moveDown();
+                game.player.moveDown(false);
                 game.checkWallCollision();
                 if (game.isEnnemy1Collision()) {
                     location.href = "scorePage.html";

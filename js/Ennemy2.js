@@ -32,54 +32,60 @@ class Ennemy2 {
             this.positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;
             this.updateEnnemy2();
             let isFollowingXAxis = true;
-            this.movementIntervalId = setInterval(() => {
-                if (isFollowingXAxis) {
-                    if (this.positionXGrid < 24) {
-                        this.positionXGrid++;
-                        this.updateEnnemy2();
-                    } else if (this.positionXGrid === 24) {
-                        isFollowingXAxis = !isFollowingXAxis;
-                        this.ennemy2Elm.className = "ennemy2-right-to-left";
+            setTimeout(() => {
+                this.movementIntervalId = setInterval(() => {
+                    if (isFollowingXAxis) {
+                        if (this.positionXGrid < 24) {
+                            this.positionXGrid++;
+                            this.updateEnnemy2();
+                        } else if (this.positionXGrid === 24) {
+                            isFollowingXAxis = !isFollowingXAxis;
+                            this.ennemy2Elm.className = "ennemy2-right-to-left";
+                        }
+    
+                    } else {
+                        if (this.positionXGrid > 1) {
+                            this.positionXGrid--;
+                            this.updateEnnemy2();
+                        } else if (this.positionXGrid === 1) {
+                            isFollowingXAxis = !isFollowingXAxis;
+                            this.ennemy2Elm.className = "ennemy2-left-to-right";
+                        }
                     }
-
-                } else {
-                    if (this.positionXGrid > 1) {
-                        this.positionXGrid--;
-                        this.updateEnnemy2();
-                    } else if (this.positionXGrid === 1) {
-                        isFollowingXAxis = !isFollowingXAxis;
-                        this.ennemy2Elm.className = "ennemy2-left-to-right";
-                    }
-                }
-                this.isCollisionWithPlayer();
-            }, 1000)
+                    this.isCollisionWithPlayer();
+                }, (500))
+            },1000);
+            
         } else {
             this.ennemy2Elm.className = "ennemy2-up-to-down";
             this.positionXGrid = Math.floor(Math.random() * (24 - 1 + 1)) + 1;
             this.positionYGrid = 12;
             this.updateEnnemy2();
             let isFollowingYAxis = true;
-            this.movementIntervalId = setInterval(() => {
-                if (isFollowingYAxis) {
-                    if (this.positionYGrid > 1) {
-                        this.positionYGrid--;
-                        this.updateEnnemy2();
-                    } else if (this.positionYGrid === 1) {
-                        isFollowingYAxis = !isFollowingYAxis;
-                        this.ennemy2Elm.className = "ennemy2-down-to-up";
+            setTimeout(() => {
+                this.movementIntervalId = setInterval(() => {
+                    if (isFollowingYAxis) {
+                        if (this.positionYGrid > 1) {
+                            this.positionYGrid--;
+                            this.updateEnnemy2();
+                        } else if (this.positionYGrid === 1) {
+                            isFollowingYAxis = !isFollowingYAxis;
+                            this.ennemy2Elm.className = "ennemy2-down-to-up";
+                        }
+    
+                    } else {
+                        if (this.positionYGrid < 12) {
+                            this.positionYGrid++;
+                            this.updateEnnemy2();
+                        } else if (this.positionYGrid === 12) {
+                            isFollowingYAxis = !isFollowingYAxis;
+                            this.ennemy2Elm.className = "ennemy2-up-to-down";
+                        }
                     }
-
-                } else {
-                    if (this.positionYGrid < 12) {
-                        this.positionYGrid++;
-                        this.updateEnnemy2();
-                    } else if (this.positionYGrid === 12) {
-                        isFollowingYAxis = !isFollowingYAxis;
-                        this.ennemy2Elm.className = "ennemy2-up-to-down";
-                    }
-                }
-                this.isCollisionWithPlayer();
-            }, 1000)
+                    this.isCollisionWithPlayer();
+                }, (500))
+            },1000);
+            
         }
     }
 

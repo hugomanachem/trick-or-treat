@@ -11,19 +11,30 @@ class Player {
         this.positionYGrid = Math.floor(Math.random() * (12 - 1 + 1)) + 1;  
     }
 
-    moveLeft() {
+    moveLeft(isMalus) {
         this.positionXGrid--;
+        if(isMalus) {
+            this.playerElm.id = "player-left-malus";
+        } else {
+            this.playerElm.id = "player-left";
+        }
     }
 
-    moveRight() {
+    moveRight(isMalus) {
         this.positionXGrid++;
+        if(isMalus){
+            this.playerElm.id = "player-right-malus";
+        } else {
+            this.playerElm.id = "player-right";
+        }
+        
     }
 
-    moveUp() {
+    moveUp(isMalus) {
         this.positionYGrid ++;
     }
 
-    moveDown() {
+    moveDown(isMalus) {
         this.positionYGrid --;
     }
 }
