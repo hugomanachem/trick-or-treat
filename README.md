@@ -14,4 +14,4 @@
   
 #Demo
 
-  [Access to the game](https://hugomanachem.github.io/trick-or-treat/)https://hugomanachem.github.io/trick-or-treat/)
+  [Access to the game](https://hugomanachem.github.io/trick-or-treat/)
